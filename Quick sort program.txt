@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void swap(int *a , int *b)
+    {
+        int temp; 
+        temp = *a;
+        *a = *b;
+        *b = temp;
+        
+    }
+    void Quick_sort(int A[25], int first , int last)
+        {
+            int pivot;
+            int i;
+            int j;
+            
+            if(first < last)
+                {
+                  pivot = first;
+                      i = first;
+                        j = last;
+                
+                    while(i < j)
+                        {
+                            while(A[i]<=A[pivot] && i < last)
+                                i++;
+                                while(A[j]>A[pivot])
+                                j--;
+                                if(i < j)
+                                    {
+                                        swap(&A[i],&A[j]);
+                                    }
+                                
+                        }
+                        swap(&A[pivot],&A[j]);
+                        Quick_sort(A,first,j-1);
+                        Quick_sort(A,j+1,last);
+                }
+        }
+        
+        
+    
+    
+int main()
+{
+    int i;
+    int A[25];
+        int count;
+        printf("enter size : ");
+            scanf("%d",&count);
+            
+    for(i = 0 ; i < count ;i++)
+        {
+            scanf("%d",&A[i]);
+        }
+        
+        Quick_sort(A,0,count-1);
+        
+        printf("\n");
+            printf("sorted list is : ");
+            for( i = 0 ; i < count ; i++)
+                {
+                    printf("%d ",A[i]);
+                }
+
+    return 0;
+}
